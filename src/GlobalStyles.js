@@ -22,7 +22,7 @@ span, p, a{
   margin: 0;
 }
 
-ul{
+ul, nav{
   padding: 0;
   list-style: none;
 }

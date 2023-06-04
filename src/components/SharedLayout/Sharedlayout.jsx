@@ -2,9 +2,12 @@ import { Suspense } from "react";
 import { Dna } from "react-loader-spinner";
 import { Outlet } from "react-router-dom";
 
+import Header from "../Header/Header";
+
 const SharedLayout = () => {
     return (
-      <div>
+        <div>
+            <Header/>
         <Suspense
           fallback={
             <Dna

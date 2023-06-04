@@ -1,0 +1,10 @@
+
+[
+    { "destination": "/", "name": "Main" },
+    { "destination": "buy", "name": "Buy" },
+    { "destination": "sell", "name": "Sell" },
+    { "destination": "blog", "name": "Blog" },
+    { "destination": "references", "name": "References" },
+    { "destination": "contacts", "name": "Contacts" }
+  ]
+

@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import navLinks from "../../dataBase/nav.json"
 
 import * as SC from './NavBarStyled'
@@ -7,7 +6,7 @@ import * as SC from './NavBarStyled'
 
 const NavBar = () => {
     return (<SC.NavBar>
-        {navLinks.map(({ destination, name }) => ( <li key={name}><NavLink to={destination}>{name}</NavLink></li>))}
+        {navLinks.map(({ destination, name }) => ( <SC.Item key={name}><SC.Link to={destination}>{name}</SC.Link></SC.Item>))}
     </SC.NavBar> );
 }
  

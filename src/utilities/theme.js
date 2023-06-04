@@ -37,7 +37,7 @@ const theme = {
     XM: "36px",
     M: "24px",
     S: "20px",
-    XS: "16px",
+    XS: "14px",
   },
 
   weight: {
@@ -54,7 +54,11 @@ const theme = {
     logo: "#000",
     text: "#221754",
     background: "#EEEFF5",
+    hover: "#4399FF",
+    auth: "#1F2A50",
   },
+
+  radius: ["4px", "8px", "12px", "16px", "20px", "50%"],
 };
 
 export default theme;

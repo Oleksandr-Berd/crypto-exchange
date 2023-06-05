@@ -48,7 +48,7 @@ const MainPage = () => {
   const availableCurrencies = (code, currencies, pairsList) => {
     const allowedCodes = pairsList
       .filter((el) => el.base_unit === code)
-      .map((el) => el.quote_unit);
+        .map((el) => el.quote_unit);
     return currencies.filter((el) => allowedCodes.includes(el.code));
   };
   return (

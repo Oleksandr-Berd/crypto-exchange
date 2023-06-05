@@ -12,48 +12,23 @@ const ExchangeForm = ({
   const [symbols, setSymbols] = useState(["btc", "usd"]);
 
   const [currencyToGive, setCurrencyToGive] = useState("btc");
-  const [currencyToReceive, setCurrencyToReceive] = useState(
-    currenciesList[16]
+  const [currencyToReceive, setCurrencyToReceive] = useState("usd");
+
+  const itemsGiveList = tradeCurrencies(currenciesList, tradePairsList);
+
+  const itemsReceiveList = availableCurrencies(
+    currencyToGive,
+    currenciesList,
+    tradePairsList
   );
 
-    const itemsGiveList = tradeCurrencies(currenciesList, tradePairsList);
-    
-
-  let availablePairs = useRef([currenciesList[16]]);
-
-//   useEffect(() => {
-//     const getMatch = () =>
-//       tradePairsList
-//         .filter((el) =>
-//           currenciesList.filter((item) => el.base_unit === item.code)
-//         )
-//         .map((el) => el.quote_unit);
-
-//     const match = tradePairsList.filter(
-//       (el) => el.base_unit === currencyToGive.code
-//     );
-
-//     const test = () =>
-//       currenciesList.filter((el) =>
-//         tradePairsList.find((item) => el.code === item.base_unit)
-//       );
-
-//     const getCurrencyToReceive = () =>
-//       currenciesList.filter((el) => arrayAvailablePairs.includes(el.code));
-//     const arrayAvailablePairs = test();
-
-//     availablePairs.current = getCurrencyToReceive();
-//   }, [currenciesList, currencyToGive, tradePairsList]);
-
   const handleSelectGive = (eventKey) => {
-    // const selectedCurrency = currenciesList.find((el) => el.code === eventKey);
-    // setCurrencyToGive(selectedCurrency);
-      setCurrencyToGive(eventKey);
+    setCurrencyToGive(eventKey);
   };
 
   const handleSelectReceive = (eventKey) => {
-    const selectedCurrency = currenciesList.find((el) => el.code === eventKey);
-    setCurrencyToReceive(selectedCurrency);
+   
+    setCurrencyToReceive(eventKey);
   };
 
   return (
@@ -101,18 +76,19 @@ const ExchangeForm = ({
 
       <SC.CustomDropdown onSelect={handleSelectReceive}>
         <SC.CustomDropdownToggle variant="primary" id="dropdown-basic">
-          <>
-            <img
-              src={currencyToReceive.icons.png_2x}
-              alt={currencyToReceive.name}
-              width={30}
-            />
-            <h3>{currencyToReceive.code}</h3>
-          </>
+          {itemsReceiveList &&
+            itemsReceiveList
+              .filter((el) => el.code === currencyToReceive)
+              .map((el) => (
+                <SC.DropDownCon key={el.code}>
+                  <img src={el.icons.png_2x} alt={el.name} width={30} />
+                  <h3>{el.code}</h3>
+                </SC.DropDownCon>
+              ))}
         </SC.CustomDropdownToggle>
 
         <Dropdown.Menu>
-          {availablePairs.current.map(({ id, name, code, icons }) => (
+          {itemsReceiveList.map(({ id, name, code, icons }) => (
             <Dropdown.Item
               key={id}
               name={name}

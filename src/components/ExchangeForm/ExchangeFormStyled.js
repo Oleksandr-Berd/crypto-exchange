@@ -2,6 +2,10 @@ import { Field, Form } from "formik";
 import { Dropdown } from "react-bootstrap";
 import styled from "styled-components"
 
+export const FormContainer = styled.div`
+
+`
+
 export const CustomForm = styled(Form)`
   padding-top: ${(props) => props.theme.space[9]};
   padding-left: ${(props) => props.theme.space[8]};
@@ -48,4 +52,20 @@ export const CustomInput = styled(Field)`
 
   border: 1px solid #d9e2ef;
   border-radius: ${(props) => props.theme.radius[0]};
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+`;
+
+export const CustomDropdownToggle = styled(Dropdown.Toggle)`
+display: inline-block;
+  padding-top: ${(props) => props.theme.space[4]};
+  padding-left: ${(props) => props.theme.space[4]};
+  padding-bottom: ${(props) => props.theme.space[3]};
+  margin-bottom: 9px;
+
+  font-size: ${(props) => props.theme.size.S};
+  background-color: ${(props) => props.theme.color.formBackground};
+  color: ${(props) => props.theme.color.auth};
+  border: 1px solid #d9e2ef;
+  border-radius: 0;
 `;

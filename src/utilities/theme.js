@@ -56,6 +56,8 @@ const theme = {
     background: "#EEEFF5",
     hover: "#4399FF",
     auth: "#1F2A50",
+    formBackground: "#FFFFFF",
+    formBorder: "#D9E2EF",
   },
 
   radius: ["4px", "8px", "12px", "16px", "20px", "50%"],

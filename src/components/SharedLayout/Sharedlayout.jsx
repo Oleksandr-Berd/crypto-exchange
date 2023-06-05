@@ -2,11 +2,13 @@ import { Suspense } from "react";
 import { Dna } from "react-loader-spinner";
 import { Outlet } from "react-router-dom";
 
+import * as SC from "./SharedLayoutStyled"
+
 import Header from "../Header/Header";
 
 const SharedLayout = () => {
     return (
-        <div>
+        <SC.SharedLayout>
             <Header/>
         <Suspense
           fallback={
@@ -22,7 +24,7 @@ const SharedLayout = () => {
         >
           <Outlet />
         </Suspense>
-      </div>
+      </SC.SharedLayout>
     );
 }
  

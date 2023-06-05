@@ -12,6 +12,7 @@ export const Item = styled.li`
   padding-left: ${(props) => props.theme.space[9]};
   padding-top: ${(props) => props.theme.space[4]};
   padding-bottom: ${(props) => props.theme.space[4]};
+  transition: color 300ms ease, border 300ms ease;
 
   &:not(:last-child) {
     margin-right: ${(props) => props.theme.space[3]};
@@ -21,6 +22,13 @@ export const Item = styled.li`
   &:hover {
     border: solid 1px #1f2a50;
     border-radius: ${(props) => props.theme.radius[1]};
+    transition: border 300ms ease;
+  }
+
+  &:hover > *,
+  &:focus > * {
+    color: ${(props) => props.theme.color.hover};
+    transition: color 300ms ease;
   }
 `;
 
@@ -32,9 +40,4 @@ export const Link = styled(NavLink)`
 
   transition: color 300ms ease;
 
-  &:hover,
-  &:focus {
-    color: ${(props) => props.theme.color.hover};
-    transition: color 300ms ease;
-  }
 `;

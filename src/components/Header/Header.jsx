@@ -7,9 +7,11 @@ import NavBar from "../NavBar/Navbar";
 const Header = () => {
   return (
     <SC.Header>
-          <Logo />
-          <NavBar />
-          <AuthNav/>
+      <SC.Container>
+        <Logo />
+        <NavBar />
+        <AuthNav />
+      </SC.Container>
     </SC.Header>
   );
 };

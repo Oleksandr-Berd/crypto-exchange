@@ -11,3 +11,12 @@ export const getAllCurrencies = async () => {
         return error.message
     }
 }
+
+export const getAllTradePairs = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}/v3/markets`);
+        return response
+    } catch (error) {
+        return error.message
+    }
+}

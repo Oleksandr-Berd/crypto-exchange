@@ -1,7 +1,7 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
 import * as SC from "./ExchangeFormStyled";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const ExchangeForm = ({
   currenciesList,
@@ -9,7 +9,6 @@ const ExchangeForm = ({
   tradeCurrencies,
   availableCurrencies,
 }) => {
-  const [symbols, setSymbols] = useState(["btc", "usd"]);
 
   const [currencyToGive, setCurrencyToGive] = useState("btc");
   const [currencyToReceive, setCurrencyToReceive] = useState("usd");

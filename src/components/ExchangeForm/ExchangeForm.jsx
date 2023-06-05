@@ -1,5 +1,5 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import { Formik, Form, Field } from "formik";
+import { Formik, Field } from "formik";
 
 import * as SC from "./ExchangeFormStyled"
 
@@ -45,13 +45,13 @@ const ExchangeForm = () => {
                 </Dropdown.Menu>
                 <SC.CustomInput type="text" name="give" placeholder="" />
               </SC.CustomDropdown>
-              <div>
+              <SC.ConWithToggle>
                 <div>
                   <p>1 ETH = 2800 USD</p>
                   <SC.Label htmlFor="">Receive:</SC.Label>
                 </div>
                 <button>toggle</button>
-              </div>
+              </SC.ConWithToggle>
 
               <SC.CustomDropdown>
                 <SC.CustomDropdownToggle
@@ -87,10 +87,10 @@ const ExchangeForm = () => {
                 </Dropdown.Menu>
                 <SC.CustomInput type="text" name="receive" placeholder="" />
               </SC.CustomDropdown>
-              <div>
-                <p>Комиссия: 0.1% = 0.15 ETH</p>
+              <SC.ConWithNextStep>
+                <p>The Fee: 0.1% = 0.15 ETH</p>
                 <button>The Next Step</button>
-              </div>
+              </SC.ConWithNextStep>
             </SC.CustomForm>
           )}
         </Formik>

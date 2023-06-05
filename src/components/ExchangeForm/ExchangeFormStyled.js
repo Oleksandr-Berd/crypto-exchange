@@ -19,7 +19,6 @@ export const CustomForm = styled(Form)`
 `;
 
 export const Label = styled.label`
-  margin-bottom: ${(props) => props.theme.space[3]};
 
   font-family: ${(props) => props.theme.fontFamily.text};
   font-size: ${(props) => props.theme.size.S};
@@ -68,4 +67,24 @@ display: inline-block;
   color: ${(props) => props.theme.color.auth};
   border: 1px solid #d9e2ef;
   border-radius: 0;
+`;
+
+export const ConWithToggle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: ${(props) => props.theme.space[3]};
+  margin-bottom: ${(props) => props.theme.space[3]};
+`;
+
+export const ConWithNextStep = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-top: ${(props) => props.theme.space[3]};
+  margin-bottom: ${props => props.theme.space[9]};
 `;

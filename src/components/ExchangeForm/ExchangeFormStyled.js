@@ -6,8 +6,22 @@ export const FormContainer = styled.div`
 `
 
 export const DropDownCon = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  & > img {
+    margin-right: ${(props) => props.theme.space[2]};
+  }
 
-`
+  & > h3 {
+    margin-right: ${(props) => props.theme.space[1]};
+
+    text-transform: uppercase;
+    font-family: ${(props) => props.theme.fontFamily.text};
+    font-size: ${(props) => props.theme.size.S};
+    font-weight: ${(props) => props.theme.weight.normal};
+  }
+`;
 
 export const CustomForm = styled.form`
   padding-top: ${(props) => props.theme.space[9]};
@@ -74,19 +88,6 @@ export const CustomDropdownToggle = styled(Dropdown.Toggle)`
   color: ${(props) => props.theme.color.auth};
   border: 1px solid #d9e2ef;
   border-radius: 0;
-
-  & > img {
-    margin-right: ${(props) => props.theme.space[2]};
-  }
-
-  & > h3 {
-    margin-right: ${(props) => props.theme.space[1]};
-
-    text-transform: uppercase;
-    font-family: ${(props) => props.theme.fontFamily.text};
-    font-size: ${(props) => props.theme.size.S};
-    font-weight: ${(props) => props.theme.weight.normal};
-  }
 `;
 
 export const ConWithToggle = styled.div`

@@ -3,64 +3,78 @@ import Dropdown from "react-bootstrap/Dropdown";
 import * as SC from "./ExchangeFormStyled";
 import { useEffect, useRef, useState } from "react";
 
-const ExchangeForm = ({ currenciesList, tradePairsList }) => {
-    const [currencyToGive, setCurrencyToGive] = useState(currenciesList[6]);
-    const [currencyToReceive, setCurrencyToReceive] = useState(
-      currenciesList[16]
-    );
+const ExchangeForm = ({
+  currenciesList,
+  tradePairsList,
+  tradeCurrencies,
+  availableCurrencies,
+}) => {
+  const [symbols, setSymbols] = useState(["btc", "usd"]);
 
-    let availablePairs = useRef([currenciesList[16]]);
+  const [currencyToGive, setCurrencyToGive] = useState("btc");
+  const [currencyToReceive, setCurrencyToReceive] = useState(
+    currenciesList[16]
+  );
 
-    useEffect(() => {
-        const getMatch = () =>
-          tradePairsList
-            .filter((el) => el.base_unit === currencyToGive.code)
-                .map((el) => el.quote_unit)
-            
-    //   const match = tradePairsList.filter(
-    //     (el) => el.base_unit === currencyToGive.code
-    //   );
-        const getCurrencyToReceive = () =>
-          currenciesList.filter((el) => arrayAvailablePairs.includes(el.code));
-        const arrayAvailablePairs = getMatch();
-
-        availablePairs.current = getCurrencyToReceive()
-        ;
-        
-        console.log(availablePairs.current);
-  }, [currenciesList, currencyToGive, tradePairsList]);
-
+    const itemsGiveList = tradeCurrencies(currenciesList, tradePairsList);
     
-    
-    
+
+  let availablePairs = useRef([currenciesList[16]]);
+
+//   useEffect(() => {
+//     const getMatch = () =>
+//       tradePairsList
+//         .filter((el) =>
+//           currenciesList.filter((item) => el.base_unit === item.code)
+//         )
+//         .map((el) => el.quote_unit);
+
+//     const match = tradePairsList.filter(
+//       (el) => el.base_unit === currencyToGive.code
+//     );
+
+//     const test = () =>
+//       currenciesList.filter((el) =>
+//         tradePairsList.find((item) => el.code === item.base_unit)
+//       );
+
+//     const getCurrencyToReceive = () =>
+//       currenciesList.filter((el) => arrayAvailablePairs.includes(el.code));
+//     const arrayAvailablePairs = test();
+
+//     availablePairs.current = getCurrencyToReceive();
+//   }, [currenciesList, currencyToGive, tradePairsList]);
+
   const handleSelectGive = (eventKey) => {
-    const selectedCurrency = currenciesList.find((el) => el.code === eventKey);
-    setCurrencyToGive(selectedCurrency);
+    // const selectedCurrency = currenciesList.find((el) => el.code === eventKey);
+    // setCurrencyToGive(selectedCurrency);
+      setCurrencyToGive(eventKey);
   };
-    
-    const handleSelectReceive = (eventKey) => {
+
+  const handleSelectReceive = (eventKey) => {
     const selectedCurrency = currenciesList.find((el) => el.code === eventKey);
     setCurrencyToReceive(selectedCurrency);
-    };
-    
+  };
+
   return (
     <SC.CustomForm>
       <SC.Label htmlFor="give">Give:</SC.Label>
 
       <SC.CustomDropdown onSelect={handleSelectGive}>
         <SC.CustomDropdownToggle variant="primary" id="dropdown-basic">
-          <>
-            <img
-              src={currencyToGive.icons.png_2x}
-              alt={currencyToGive.name}
-              width={30}
-            />
-            <h3>{currencyToGive.code}</h3>
-          </>
+          {itemsGiveList &&
+            itemsGiveList
+              .filter((el) => el.code === currencyToGive)
+              .map((el) => (
+                <SC.DropDownCon key={el.code}>
+                  <img src={el.icons.png_2x} alt={el.name} width={30} />
+                  <h3>{el.code}</h3>
+                </SC.DropDownCon>
+              ))}
         </SC.CustomDropdownToggle>
 
         <Dropdown.Menu>
-          {currenciesList.map(({ id, name, code, icons }) => (
+          {itemsGiveList.map(({ id, name, code, icons }) => (
             <Dropdown.Item
               key={id}
               name={name}
@@ -124,3 +138,5 @@ const ExchangeForm = ({ currenciesList, tradePairsList }) => {
 };
 
 export default ExchangeForm;
+
+

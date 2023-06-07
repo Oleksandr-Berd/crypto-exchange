@@ -88,6 +88,12 @@ export const CustomDropdownToggle = styled(Dropdown.Toggle)`
   color: ${(props) => props.theme.color.auth};
   border: 1px solid #d9e2ef;
   border-radius: 0;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: ${(props) => props.theme.color.auth};
+  }
 `;
 
 export const ConWithToggle = styled.div`
@@ -149,4 +155,27 @@ export const InclusiveDropdownMenuCon = styled.div`
     font-size: ${(props) => props.theme.size.S};
     font-family: ${(props) => props.theme.fontFamily.text};
   }
+`;
+
+export const DropdownMenu = styled(Dropdown.Menu)`
+  padding-left: ${(props) => props.theme.space[3]};
+  padding-right: ${(props) => props.theme.space[3]};
+  padding-top: ${(props) => props.theme.space[3]};
+`;
+
+export const DropDownMenuTitle = styled.h2`
+font-size: ${props => props.theme.size.S};
+font-family: ${props => props.theme.fontFamily.title};
+font-weight: ${props => props.theme.weight.normal};
+`
+
+export const ToggleBtn = styled.button`
+  padding-right: ${(props) => props.theme.space[3]};
+  padding-left: ${(props) => props.theme.space[3]};
+  padding-top: ${(props) => props.theme.space[2]};
+  padding-bottom: ${(props) => props.theme.space[2]};
+
+  background: #f7f8fa;
+  border: 1.12745px solid #d9e2ef;
+  border-radius: 7.89216px;
 `;

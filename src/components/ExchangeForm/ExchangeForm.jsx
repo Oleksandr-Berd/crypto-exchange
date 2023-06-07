@@ -1,7 +1,11 @@
+import { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import { Form, InputGroup } from "react-bootstrap";
+import { BiSearchAlt } from "react-icons/bi";
 
 import * as SC from "./ExchangeFormStyled";
-import { useState } from "react";
+import { ReactComponent as ToggleSvg } from "../../assets/images/toggle.svg";
+
 
 const ExchangeForm = ({
   currenciesList,
@@ -9,7 +13,6 @@ const ExchangeForm = ({
   tradeCurrencies,
   availableCurrencies,
 }) => {
-
   const [currencyToGive, setCurrencyToGive] = useState("btc");
   const [currencyToReceive, setCurrencyToReceive] = useState("usd");
 
@@ -26,7 +29,6 @@ const ExchangeForm = ({
   };
 
   const handleSelectReceive = (eventKey) => {
-   
     setCurrencyToReceive(eventKey);
   };
 
@@ -47,7 +49,18 @@ const ExchangeForm = ({
               ))}
         </SC.CustomDropdownToggle>
 
-        <Dropdown.Menu>
+        <SC.DropdownMenu>
+          <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon1">
+              <BiSearchAlt />
+            </InputGroup.Text>
+            <Form.Control
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="basic-addon1"
+            />
+          </InputGroup>
+          <SC.DropDownMenuTitle>Currencies:</SC.DropDownMenuTitle>
           {itemsGiveList.map(({ id, name, code, icons }) => (
             <Dropdown.Item
               key={id}
@@ -62,7 +75,7 @@ const ExchangeForm = ({
               </SC.InclusiveDropdownMenuCon>
             </Dropdown.Item>
           ))}
-        </Dropdown.Menu>
+        </SC.DropdownMenu>
         <SC.CustomInput type="text" name="give" placeholder="" />
       </SC.CustomDropdown>
       <SC.ConWithToggle>
@@ -70,7 +83,7 @@ const ExchangeForm = ({
           <p>1 ETH = 2800 USD</p>
           <SC.Label htmlFor="">Receive:</SC.Label>
         </div>
-        <button>toggle</button>
+        <SC.ToggleBtn><ToggleSvg/></SC.ToggleBtn>
       </SC.ConWithToggle>
 
       <SC.CustomDropdown onSelect={handleSelectReceive}>
@@ -113,5 +126,3 @@ const ExchangeForm = ({
 };
 
 export default ExchangeForm;
-
-

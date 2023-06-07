@@ -58,6 +58,7 @@ const theme = {
     auth: "#1F2A50",
     formBackground: "#FFFFFF",
     formBorder: "#D9E2EF",
+    error: "#FF0000",
   },
 
   radius: ["4px", "8px", "12px", "16px", "20px", "50%"],

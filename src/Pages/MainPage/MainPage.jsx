@@ -3,34 +3,44 @@ import ExchangeForm from "../../components/ExchangeForm/ExchangeForm";
 import MainTextBox from "../../components/MainTextBox/MainTextBox";
 import Illustration from "./Illustration";
 import * as SC from "./MainPageStyled";
-import { getAllCurrencies, getAllTradePairs } from "../../utilities/helpers";
+import {
+  getAllCurrencies,
+  getAllTradePairs,
+  getPrice,
+} from "../../utilities/helpers";
 
 const MainPage = () => {
+  const [price, setPrice] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const allCurrencies = useRef([]);
   const allTradePairs = useRef({});
 
   useEffect(() => {
-    setIsLoading(true);
-    const fetchAllCurrencies = async () => {
-      const response = await getAllCurrencies();
-      allCurrencies.current = response.data;
-      localStorage.setItem(
-        "currenciesList",
-        JSON.stringify(allCurrencies.current)
-      );
-    };
-    const fetchAllTradePairs = async () => {
-      const response = await getAllTradePairs();
-      allTradePairs.current = response.data;
-      localStorage.setItem(
-        "tradePairsList",
-        JSON.stringify(allTradePairs.current)
-      );
-    };
-    fetchAllCurrencies();
-    fetchAllTradePairs();
+    try {
+      setIsLoading(true);
+      const fetchAllCurrencies = async () => {
+        const response = await getAllCurrencies();
+        allCurrencies.current = response.data;
+        localStorage.setItem(
+          "currenciesList",
+          JSON.stringify(allCurrencies.current)
+        );
+      };
+      const fetchAllTradePairs = async () => {
+        const response = await getAllTradePairs();
+        allTradePairs.current = response.data;
+        localStorage.setItem(
+          "tradePairsList",
+          JSON.stringify(allTradePairs.current)
+        );
+      };
+      fetchAllCurrencies();
+      fetchAllTradePairs();
+    } catch (error) {
+      setError(error.message);
+    }
   }, []);
 
   const storedCurrencies = localStorage.getItem("currenciesList");
@@ -44,12 +54,23 @@ const MainPage = () => {
     );
   };
 
-    
   const availableCurrencies = (code, currencies, pairsList) => {
     const allowedCodes = pairsList
       .filter((el) => el.base_unit === code)
-        .map((el) => el.quote_unit);
+      .map((el) => el.quote_unit);
     return currencies.filter((el) => allowedCodes.includes(el.code));
+  };
+
+  const fetchPrice = async (symbols) => {
+    try {
+        const prices = await getPrice(symbols);
+        
+       
+        setPrice(prices ? prices[1] : null);
+    } catch (error) {
+        console.log(error);
+      setError(error.message);
+    }
   };
   return (
     <SC.MainPage>
@@ -63,7 +84,10 @@ const MainPage = () => {
         tradeCurrencies={tradeCurrencies}
         availableCurrencies={availableCurrencies}
         isLoading={isLoading}
-      />
+              fetchPrice={fetchPrice}
+              price={price}
+          />
+          {error && (<div>{error}</div>)}
     </SC.MainPage>
   );
 };

@@ -200,3 +200,15 @@ export const NextBtn = styled.button`
     margin-right: ${props => props.theme.space[3]};
   }
 `;
+
+export const ExchangeRate = styled.p`
+  font-family: ${(props) => props.theme.fontFamily.text};
+  color: ${(props) =>
+    props.status !== "error"
+      ? props.theme.color.auth
+      : props.theme.color.error};
+  font-weight: ${(props) =>
+    props.status !== "error"
+      ? props.theme.weight.normal
+      : props.theme.weight.bold};
+`;

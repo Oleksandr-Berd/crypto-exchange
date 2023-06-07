@@ -20,3 +20,16 @@ export const getAllTradePairs = async () => {
         return error.message
     }
 }
+
+export const getPrice = async (symbols) => {
+    try {
+        const response = await axios.get(
+            `${BASE_URL}/v3/tickers?symbols=${symbols}`
+           
+        );
+
+        return response.data[0];
+    } catch (error) {
+        
+    }
+}

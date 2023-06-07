@@ -59,6 +59,7 @@ const theme = {
     formBackground: "#FFFFFF",
     formBorder: "#D9E2EF",
     error: "#FF0000",
+    historyBackground: "#DDE6F3",
   },
 
   radius: ["4px", "8px", "12px", "16px", "20px", "50%"],

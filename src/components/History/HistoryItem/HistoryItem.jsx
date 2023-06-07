@@ -2,6 +2,8 @@ import defaultGive from "../../../assets/images/iconGive.png"
 import defaultReceive from "../../../assets/images/iconReceive.png";
 import arrow from "../../../assets/images/Arrow 5.png"
 
+import * as SC from './HistoryItemStyled'
+
 
 const HistoryItem = ({
   date,
@@ -14,7 +16,7 @@ const HistoryItem = ({
     return (
       <li>
         <p>{date}</p>
-        <div>
+        <SC.DataHistoryItem>
           <img src={defaultGive} alt={codeGive} />
           <p>{amountGive}</p>
           <p>{codeGive}</p>
@@ -25,7 +27,7 @@ const HistoryItem = ({
           />
           <p>{amountReceive}</p>
           <p>{codeReceive}</p>
-        </div>
+        </SC.DataHistoryItem>
       </li>
     );
 };

@@ -72,7 +72,9 @@ export const CustomInput = styled.input`
   border-radius: ${(props) => props.theme.radius[0]};
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-`;
+
+  background-color: ${props => props.disabled && props.theme.color.formBackground};
+`
 
 export const CustomDropdownToggle = styled(Dropdown.Toggle)`
   display: flex;
@@ -185,6 +187,7 @@ export const NextBtn = styled.button`
   padding-right: ${(props) => props.theme.space[6]};
   padding-top: ${(props) => props.theme.space[4]};
   padding-bottom: ${(props) => props.theme.space[4]};
+  margin-top: ${props => props.theme.space[2]};
 
   font-family: ${(props) => props.theme.fontFamily.text};
   color: ${(props) => props.theme.color.formBackground};

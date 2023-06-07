@@ -16,6 +16,7 @@ const ExchangeForm = ({
   const [currencyToGive, setCurrencyToGive] = useState("btc");
     const [currencyToReceive, setCurrencyToReceive] = useState("usd");
     const [filterQuery, setFilterQuery] = useState("")
+    const [amountGive, setAmountGive] = useState(1)
 
   const itemsGiveList = tradeCurrencies(currenciesList, tradePairsList);
 
@@ -47,7 +48,13 @@ const ExchangeForm = ({
         );
 },[filterQuery, itemsGiveList])
 
-    console.log(filterQuery);
+    const handleAmountGive = (evt) => {
+        setAmountGive(evt.target.value)
+   }
+    
+    console.log(amountGive);
+    
+    
   return (
     <SC.CustomForm>
       <SC.Label htmlFor="give">Give:</SC.Label>
@@ -93,7 +100,7 @@ const ExchangeForm = ({
             </Dropdown.Item>
           ))}
         </SC.DropdownMenu>
-        <SC.CustomInput type="text" name="give" placeholder="" />
+              <SC.CustomInput type="text" name="give" placeholder="" onChange={handleAmountGive} value={amountGive} />
       </SC.CustomDropdown>
       <SC.ConWithToggle>
         <div>
@@ -134,7 +141,7 @@ const ExchangeForm = ({
             </Dropdown.Item>
           ))}
         </Dropdown.Menu>
-        <SC.CustomInput type="text" name="give" placeholder="" />
+        <SC.CustomInput type="text" name="receive" placeholder="" disabled/>
       </SC.CustomDropdown>
       <SC.ConWithNextStep>
         <p>The Fee: 0.1% = 0.15 ETH</p>

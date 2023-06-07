@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Form, InputGroup } from "react-bootstrap";
 import { BiSearchAlt } from "react-icons/bi";
 
 import * as SC from "./ExchangeFormStyled";
 import { ReactComponent as ToggleSvg } from "../../assets/images/toggle.svg";
-
+import { ReactComponent as PathSvg } from "../../assets/images/Path.svg";
 
 const ExchangeForm = ({
   currenciesList,
@@ -14,7 +14,8 @@ const ExchangeForm = ({
   availableCurrencies,
 }) => {
   const [currencyToGive, setCurrencyToGive] = useState("btc");
-  const [currencyToReceive, setCurrencyToReceive] = useState("usd");
+    const [currencyToReceive, setCurrencyToReceive] = useState("usd");
+    const [filterQuery, setFilterQuery] = useState("")
 
   const itemsGiveList = tradeCurrencies(currenciesList, tradePairsList);
 
@@ -31,7 +32,22 @@ const ExchangeForm = ({
   const handleSelectReceive = (eventKey) => {
     setCurrencyToReceive(eventKey);
   };
+    
+    const handleFilter = (evt) => {
+        setTimeout(()=>{setFilterQuery(evt.target.value);}, 300)
+        
+    }
 
+    const getVisibleItems = useMemo(() => {
+        const normalizedFilter = filterQuery.trim().toLowerCase()
+        return itemsGiveList.filter(
+          (el) =>
+            el.code.toLowerCase().includes(normalizedFilter) ||
+            el.name.toLowerCase().includes(normalizedFilter)
+        );
+},[filterQuery, itemsGiveList])
+
+    console.log(filterQuery);
   return (
     <SC.CustomForm>
       <SC.Label htmlFor="give">Give:</SC.Label>
@@ -58,10 +74,11 @@ const ExchangeForm = ({
               placeholder="Search"
               aria-label="Search"
               aria-describedby="basic-addon1"
+              onChange={handleFilter}
             />
           </InputGroup>
           <SC.DropDownMenuTitle>Currencies:</SC.DropDownMenuTitle>
-          {itemsGiveList.map(({ id, name, code, icons }) => (
+          {getVisibleItems.map(({ id, name, code, icons }) => (
             <Dropdown.Item
               key={id}
               name={name}
@@ -83,7 +100,9 @@ const ExchangeForm = ({
           <p>1 ETH = 2800 USD</p>
           <SC.Label htmlFor="">Receive:</SC.Label>
         </div>
-        <SC.ToggleBtn><ToggleSvg/></SC.ToggleBtn>
+        <SC.ToggleBtn>
+          <ToggleSvg />
+        </SC.ToggleBtn>
       </SC.ConWithToggle>
 
       <SC.CustomDropdown onSelect={handleSelectReceive}>
@@ -119,7 +138,10 @@ const ExchangeForm = ({
       </SC.CustomDropdown>
       <SC.ConWithNextStep>
         <p>The Fee: 0.1% = 0.15 ETH</p>
-        <button>The Next Step</button>
+        <SC.NextBtn>
+          <span>The Next Step</span>
+          <PathSvg />
+        </SC.NextBtn>
       </SC.ConWithNextStep>
     </SC.CustomForm>
   );

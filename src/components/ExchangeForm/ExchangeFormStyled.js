@@ -179,3 +179,21 @@ export const ToggleBtn = styled.button`
   border: 1.12745px solid #d9e2ef;
   border-radius: 7.89216px;
 `;
+
+export const NextBtn = styled.button`
+  padding-left: ${(props) => props.theme.space[5]};
+  padding-right: ${(props) => props.theme.space[6]};
+  padding-top: ${(props) => props.theme.space[4]};
+  padding-bottom: ${(props) => props.theme.space[4]};
+
+  font-family: ${(props) => props.theme.fontFamily.text};
+  color: ${(props) => props.theme.color.formBackground};
+  font-size: ${(props) => props.theme.size.XS};
+
+  background: #aeb7c3;
+  border-radius: 8px;
+
+  & > span{
+    margin-right: ${props => props.theme.space[3]};
+  }
+`;

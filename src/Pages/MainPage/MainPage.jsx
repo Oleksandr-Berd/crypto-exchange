@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ExchangeForm from "../../components/ExchangeForm/ExchangeForm";
 import MainTextBox from "../../components/MainTextBox/MainTextBox";
 import Illustration from "./Illustration";
+import History from "../../components/History/History"
 import * as SC from "./MainPageStyled";
 import {
   getAllCurrencies,
@@ -72,24 +73,27 @@ const MainPage = () => {
       setError(error.message);
     }
   };
-  return (
-    <SC.MainPage>
-      <SC.Container>
-        <MainTextBox />
-        <Illustration />
-      </SC.Container>
-      <ExchangeForm
-        currenciesList={currenciesList}
-        tradePairsList={tradePairsList}
-        tradeCurrencies={tradeCurrencies}
-        availableCurrencies={availableCurrencies}
-        isLoading={isLoading}
-              fetchPrice={fetchPrice}
-              price={price}
+    return (
+      <div>
+        <SC.MainPage>
+          <SC.Container>
+            <MainTextBox />
+            <Illustration />
+          </SC.Container>
+          <ExchangeForm
+            currenciesList={currenciesList}
+            tradePairsList={tradePairsList}
+            tradeCurrencies={tradeCurrencies}
+            availableCurrencies={availableCurrencies}
+            isLoading={isLoading}
+            fetchPrice={fetchPrice}
+            price={price}
           />
-          {error && (<div>{error}</div>)}
-    </SC.MainPage>
-  );
+          {error && <div>{error}</div>}
+            </SC.MainPage>
+            <History/>
+      </div>
+    );
 };
 
 export default MainPage;

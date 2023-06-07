@@ -32,13 +32,21 @@ const ExchangeForm = ({
   const symbols = currencyToGive + currencyToReceive;
 
   useEffect(() => {
-      fetchPrice(symbols);
-      const precisionArray = currenciesList.filter(
-        (el) => el.code === currencyToReceive
-      );
-const precision = precisionArray[0].precision.real;
+    fetchPrice(symbols);
+    const precisionArray = currenciesList.filter(
+      (el) => el.code === currencyToReceive
+    );
+    const precision = precisionArray[0].precision.real;
     setAmountReceive((amountGive * price).toFixed(precision));
-  }, [amountGive, currenciesList, currencyToGive, currencyToReceive, fetchPrice, price, symbols]);
+  }, [
+    amountGive,
+    currenciesList,
+    currencyToGive,
+    currencyToReceive,
+    fetchPrice,
+    price,
+    symbols,
+  ]);
 
   const handleSelectGive = (eventKey) => {
     setCurrencyToGive(eventKey);
@@ -66,11 +74,10 @@ const precision = precisionArray[0].precision.real;
   const handleAmountGive = (evt) => {
     setAmountGive(evt.target.value);
   };
-    
-    const defaultReceive = currenciesList.find(
-      (el) => el.code === currencyToReceive
-    );
 
+  const defaultReceive = currenciesList.find(
+    (el) => el.code === currencyToReceive
+  );
 
   return (
     <SC.CustomForm>
@@ -134,7 +141,10 @@ const precision = precisionArray[0].precision.real;
               {currencyToReceive.toUpperCase()}{" "}
             </SC.ExchangeRate>
           ) : (
-            <SC.ExchangeRate status="error"> Please chose the valid currency</SC.ExchangeRate>
+            <SC.ExchangeRate status="error">
+              {" "}
+              Please chose the valid currency
+            </SC.ExchangeRate>
           )}
 
           <SC.Label htmlFor="">Receive:</SC.Label>
@@ -192,7 +202,17 @@ const precision = precisionArray[0].precision.real;
         />
       </SC.CustomDropdown>
       <SC.ConWithNextStep>
-        <p>The Fee: 0.1% = 0.15 ETH</p>
+        {price ? (
+          <SC.ExchangeRate>
+            The Fee: 0.1% = {amountGive / 1000} {currencyToGive}
+          </SC.ExchangeRate>
+        ) : (
+          <SC.ExchangeRate status="error">
+            {" "}
+            Please chose the valid currency
+          </SC.ExchangeRate>
+        )}
+
         <SC.NextBtn>
           <span>The Next Step</span>
           <PathSvg />

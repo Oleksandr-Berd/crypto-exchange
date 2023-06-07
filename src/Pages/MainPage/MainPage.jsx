@@ -74,7 +74,7 @@ const MainPage = () => {
     }
   };
     return (
-      <div>
+      <SC.MainPageContainer>
         <SC.MainPage>
           <SC.Container>
             <MainTextBox />
@@ -92,7 +92,7 @@ const MainPage = () => {
           {error && <div>{error}</div>}
             </SC.MainPage>
             <History/>
-      </div>
+      </SC.MainPageContainer>
     );
 };
 

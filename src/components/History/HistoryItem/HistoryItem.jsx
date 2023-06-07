@@ -14,21 +14,21 @@ const HistoryItem = ({
 }) =>
 {    
     return (
-      <li>
+      <SC.Item>
         <p>{date}</p>
         <SC.DataHistoryItem>
           <img src={defaultGive} alt={codeGive} />
           <p>{amountGive}</p>
-          <p>{codeGive}</p>
+          <p>{codeGive.toUpperCase()}</p>
           <img src={arrow} alt="arrow" />
           <img
             src={defaultReceive}
             alt={codeGive}
           />
           <p>{amountReceive}</p>
-          <p>{codeReceive}</p>
+          <p>{codeReceive.toUpperCase()}</p>
         </SC.DataHistoryItem>
-      </li>
+      </SC.Item>
     );
 };
  

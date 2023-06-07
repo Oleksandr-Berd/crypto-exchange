@@ -160,6 +160,9 @@ export const InclusiveDropdownMenuCon = styled.div`
 `;
 
 export const DropdownMenu = styled(Dropdown.Menu)`
+  max-height: 560px; 
+  overflow-y: auto;
+
   padding-left: ${(props) => props.theme.space[3]};
   padding-right: ${(props) => props.theme.space[3]};
   padding-top: ${(props) => props.theme.space[3]};
